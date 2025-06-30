@@ -6,6 +6,13 @@ on:
         branches: [main]
 
 jobs:
+    dockerbuild:
+        runs-on: ubuntu-latest
+        steps: 
+            - uses: actions/checkout@v3
+            - name: Build the docker image
+              run: docker build . --file DockerFile --tag workflow-test:$(date+%s)
+            
     build-and-test:
         runs-on: ubuntu-latest
         steps: 
